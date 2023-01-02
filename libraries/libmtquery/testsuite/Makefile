@@ -1,6 +1,6 @@
 include ../Makefile.common
 LDFLAGS = -Wl,-rpath,$(shell pwd)/../src/ -L../src/
-LDLIBS = -lmtquery
+LDLIBS = -lmtquery -lbtree
 DEBUG_INCLUDES= -I../../libmtsupport/include/mt/support -I../../libbtree/include/btree -I../../libfacet/include/facet
 CXXFLAGS = $(FLAGS) $(DEBUG_INCLUDES) -I../include/mt/query -I/usr/include/btree -I/usr/include/mt/support -I/usr/include/facet
 
