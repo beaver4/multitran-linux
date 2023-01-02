@@ -1,0 +1,15 @@
+#!/bin/sh
+
+NAME=qmtcc
+VERSION=0.0.1alpha1
+CVSROOT=:ext:ievlev@cvs.sourceforge.net:/cvsroot/multitran
+
+cvs commit -m ' - Auto commit'
+mkdir -p $NAME-$VERSION
+CVSROOT=$CVSROOT cvs co $NAME
+mv $NAME/* $NAME-$VERSION
+./cvs2cl.pl -b --fsf -f $NAME-$VERSION/ChangeLog
+rmdir $NAME
+find $NAME-$VERSION -type d -name 'CVS'|xargs rm -rf
+tar -cjpf $NAME-$VERSION.tar.bz2 $NAME-$VERSION
+rm -rf $NAME-$VERSION
