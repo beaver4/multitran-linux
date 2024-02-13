@@ -15,7 +15,7 @@ INCLUDEDIR = $(includedir)/mt/query
 INCLUDES=-I/usr/include/btree -I/usr/include/facet -I/usr/include/mt/support -I../include/mt/query 
 DEBUG_INCLUDES= -I../../libmtsupport/include/mt/support -I../../libbtree/include/btree -I../../libfacet/include/facet
 CXXFLAGS =$(FLAGS) $(DEBUG_INCLUDES) $(INCLUDES) $(RPM_OPT_FLAGS)
-LDLIBS = -lmtsupport -lbtree -lfacet
+LDLIBS = $(shell pwd)/../../libmtsupport/src/libmtsupport.a $(shell pwd)/../../libbtree/src/libbtree.a $(shell pwd)/../../libfacet/src/libfacet.a
 DEBUG_LDFLAGS= -L$(shell pwd)/../../libmtsupport/src -Wl,-rpath,$(shell pwd)/../../libmtsupport/src \
  -L$(shell pwd)/../../libfacet/src -Wl,-rpath,$(shell pwd)/../../libfacet/src \
  -L$(shell pwd)/../../libbtree/src -Wl,-rpath,$(shell pwd)/../../libbtree/src

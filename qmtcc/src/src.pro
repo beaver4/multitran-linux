@@ -14,7 +14,7 @@ INSTALLS += target
 
 DEPENDPATH	= ../include
 INCPATH += ../include /usr/include/mt/query /usr/include/mt/support /usr/include/facet /usr/include/btree
-LIBS += -lmtquery -lmtsupport -lfacet
+LIBS += -lmtquery
 
 
 HEADERS	= xkeyboard.hh langpair_selector.hh qmtcc.hh single.hh word_selector.hh \

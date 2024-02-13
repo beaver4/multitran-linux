@@ -23,6 +23,9 @@ LIB_OBJ = $(LIB_SRC:%.cc=%.o)
 LIB_SOBJ = $(LIB_SRC:%.cc=%.so)
 LIB_DEP = $(LIB_SRC:%.cc=%.d)
 
+# Add -fPIC to the CXXFLAGS variable to enable PIC for all C++ compilations
+CXXFLAGS += -fPIC
+
 TARGETS = $(SHAREDLIB) $(STATICLIB)
 
 .PHONY: all install clean
@@ -30,7 +33,7 @@ TARGETS = $(SHAREDLIB) $(STATICLIB)
 all: $(TARGETS)
 
 %.so: %.cc
-	$(COMPILE.cpp) $(CPPFLAGS) -fpic $< $(OUTPUT_OPTION)
+	$(COMPILE.cpp) $(CPPFLAGS) -fPIC $< $(OUTPUT_OPTION)
 
 $(SHAREDLIB): $(LIB_SOBJ)
 	$(LINK.o) -shared -Wl,-soname,$(SONAME) -lc $+ $(OUTPUT_OPTION)
