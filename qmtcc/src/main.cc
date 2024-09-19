@@ -7,16 +7,37 @@
 #include <string.h>
 #include <libgen.h>
 
+#include <unistd.h> // For realpath
+#include <stdlib.h> // For free
+
 #include "translator.hh"
 #include "qmtcc.hh"
 
+
+
 int main( int argc, char **argv )
 {
-    char exepath[PATH_MAX]; char datadir[PATH_MAX];
+    char exepath[PATH_MAX];
+    char *resolvedPath = realpath("/proc/self/exe", NULL);
+    if (resolvedPath == NULL) {
+        perror("Error resolving path");
+        return  1;
+    }
+
+    strncpy(exepath, resolvedPath, sizeof(exepath));
+    free(resolvedPath); // Don't forget to free the memory allocated by realpath
+
+    // Use dirname to get the directory of the actual executable
+    char *dir = dirname(exepath);
+    if (dir == NULL) {
+        perror("Error getting directory name");
+        return  1;
+    }
+
+    // Construct the data directory path using the directory of the actual executable
+    char datadir[PATH_MAX];
+    snprintf(datadir, sizeof(datadir), "%s/../share/multitran", dir);
     
-    strncpy(exepath, argv[0], sizeof(exepath));
-    dirname(exepath);
-    snprintf(datadir, sizeof(datadir), "%s/../share/multitran", exepath);
     mt::datapath = datadir;
     
     qmtcc a(argc,argv);

@@ -65,7 +65,7 @@ void art_viewer::set(mt::article_set as)
     else
     {
 	os<<"<table border=\"0\" width=\"100%\">\n";
-        os<<"<tr><td><i>original</i></td><td><i>subject</i></td><td><i>translation</i>";
+        os<<"<tr><td><b>original</b></td><td><b>subject</b></td><td><b>translation</b>";
 
 	std::sort(as.articles_.begin(),as.articles_.end(),compare_articles);
     
