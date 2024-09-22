@@ -8,7 +8,7 @@
 Запустить можно двойным кликом по файлу AppRun.
 
 Чтобы создать ярлык в главном меню 
-1. Отредактируйте файл qmtcc.desktop так 
+1. Отредактируйте файл /opt/multitran/usr/share/applications/qmtcc.desktop так 
 Exec=/opt/multitran/usr/bin/qmtcc
 Icon=/opt/multitran/usr/share/icons/hicolor/512x512/apps/mt-icon.png
 где /opt/multitran - путь, куда вы распаковали программу.
